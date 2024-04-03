@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WordCalc.Presentation.View.NewGamePage"
+             Title="NewGamePage"
+             xmlns:viewModel="clr-namespace:WordCalc.Presentation.ViewModel"
+             x:DataType="viewModel:NewGameViewModel">
+    <VerticalStackLayout>
+        <Label Text="Enter up to four players" />
+        <Entry Placeholder="Player 1" Text="{Binding Player1}" />
+        <Entry Placeholder="Player 2" Text="{Binding Player2}" />
+        <Entry Placeholder="Player 3" Text="{Binding Player3}" />
+        <Entry Placeholder="Player 4" Text="{Binding Player4}" />
+
+        <Button Text="Start Game" Command="{Binding StartGameCommand}" />
+    </VerticalStackLayout>
+</ContentPage>

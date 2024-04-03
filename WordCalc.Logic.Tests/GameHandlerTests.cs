@@ -2,9 +2,9 @@
 
 [ExcludeFromCodeCoverage]
 [TestFixture]
-public class GameManagerTests
+public class GameHandlerTests
 {
-    private GameManager _gameManager;
+    private GameHandler _gameManager;
 
     [SetUp]
     public void SetUp() => _gameManager = new();
@@ -70,5 +70,19 @@ public class GameManagerTests
 
         // Assert
         _gameManager.CurrentGame.Should().BeEquivalentTo(expectedGame);
+    }
+
+    [Test]
+    public void ClearGame_WithCurrentGame_ClearsCurrentGame()
+    {
+        // Arrange
+        var players = new List<string> { "Alvin", "Jeremy" };
+        _gameManager.CreateGame(players);
+
+        // Act
+        _gameManager.ClearGame();
+
+        // Assert
+        _gameManager.CurrentGame.Should().BeNull();
     }
 }

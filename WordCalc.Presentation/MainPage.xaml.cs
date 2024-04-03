@@ -1,24 +1,17 @@
-﻿namespace WordCalc.Presentation;
+﻿using WordCalc.Presentation.View;
+
+namespace WordCalc.Presentation;
 
 public partial class MainPage : ContentPage
 {
-    int count = 0;
-
     public MainPage()
     {
         InitializeComponent();
     }
 
-    private void OnCounterClicked(object sender, EventArgs e)
+    private async void NewGameButton_Clicked(object sender, EventArgs e)
     {
-        count++;
-
-        if (count == 1)
-            CounterBtn.Text = $"Clicked {count} time";
-        else
-            CounterBtn.Text = $"Clicked {count} times";
-
-        SemanticScreenReader.Announce(CounterBtn.Text);
+        await Shell.Current.GoToAsync(nameof(NewGamePage));
     }
 }
 

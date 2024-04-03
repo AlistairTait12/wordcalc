@@ -2,7 +2,7 @@
 
 namespace WordCalc.Logic;
 
-public class GameManager
+public class GameHandler
 {
     public Game? CurrentGame { get; private set; }
 
@@ -25,4 +25,6 @@ public class GameManager
 
     public void AddTurn(int playerOrder, Turn turnToAdd) =>
         CurrentGame.Players.ElementAt(playerOrder).Turns.Add(turnToAdd);
+
+    public void ClearGame() => CurrentGame = null;
 }
