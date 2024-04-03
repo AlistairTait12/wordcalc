@@ -4,10 +4,10 @@
 [TestFixture]
 public class GameHandlerTests
 {
-    private GameHandler _gameManager;
+    private GameHandler _gameHandler;
 
     [SetUp]
-    public void SetUp() => _gameManager = new();
+    public void SetUp() => _gameHandler = new();
 
     [Test]
     public void CreateGame_WithPlayers_CreatesGameWithPlayers()
@@ -24,10 +24,10 @@ public class GameHandlerTests
         };
 
         // Act
-        _gameManager.CreateGame(players);
+        _gameHandler.CreateGame(players);
 
         // Assert
-        _gameManager.CurrentGame.Should().BeEquivalentTo(expected);
+        _gameHandler.CurrentGame.Should().BeEquivalentTo(expected);
     }
 
     [Test]
@@ -35,7 +35,7 @@ public class GameHandlerTests
     {
         // Arrange
         var players = new List<string> { "Alvin", "Jeremy" };
-        _gameManager.CreateGame(players);
+        _gameHandler.CreateGame(players);
 
         var expectedGame = new Game
         {
@@ -64,12 +64,12 @@ public class GameHandlerTests
         };
 
         // Act
-        _gameManager.AddTurn(0, new());
-        _gameManager.AddTurn(1, new());
-        _gameManager.AddTurn(0, new());
+        _gameHandler.AddTurn(0, new());
+        _gameHandler.AddTurn(1, new());
+        _gameHandler.AddTurn(0, new());
 
         // Assert
-        _gameManager.CurrentGame.Should().BeEquivalentTo(expectedGame);
+        _gameHandler.CurrentGame.Should().BeEquivalentTo(expectedGame);
     }
 
     [Test]
@@ -77,12 +77,12 @@ public class GameHandlerTests
     {
         // Arrange
         var players = new List<string> { "Alvin", "Jeremy" };
-        _gameManager.CreateGame(players);
+        _gameHandler.CreateGame(players);
 
         // Act
-        _gameManager.ClearGame();
+        _gameHandler.ClearGame();
 
         // Assert
-        _gameManager.CurrentGame.Should().BeNull();
+        _gameHandler.CurrentGame.Should().BeNull();
     }
 }
