@@ -6,7 +6,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="25*" />
         </Grid.RowDefinitions>
 
         <Label Text="Wordcalc"
@@ -22,5 +23,12 @@
                 VerticalOptions="Center"
                 Grid.Row="1"
                 Clicked="NewGameButton_Clicked" />
+
+        <Button Text="Test Page"
+                FontSize="24"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Grid.Row="2"
+                Clicked="TestPageButton_Clicked" />
     </Grid>
 </ContentPage>

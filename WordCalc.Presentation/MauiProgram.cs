@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using WordCalc.Logic;
+using WordCalc.Presentation.Components;
 using WordCalc.Presentation.View;
 using WordCalc.Presentation.ViewModel;
 
@@ -20,6 +21,8 @@ public static class MauiProgram
         builder.Services.AddSingleton<GameHandler>();
         builder.Services.AddTransient<NewGameViewModel>();
         builder.Services.AddTransient<NewGamePage>();
+        builder.Services.AddTransient<TestPage>();
+        builder.Services.AddTransient<TileComponent>();
 
 #if DEBUG
 		builder.Logging.AddDebug();
