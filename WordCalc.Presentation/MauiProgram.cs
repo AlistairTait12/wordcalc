@@ -22,7 +22,7 @@ public static class MauiProgram
         builder.Services.AddTransient<NewGameViewModel>();
         builder.Services.AddTransient<NewGamePage>();
         builder.Services.AddTransient<TestPage>();
-        builder.Services.AddTransient<TileComponent>();
+        builder.Services.AddSingleton<TestViewModel>();
 
 #if DEBUG
 		builder.Logging.AddDebug();

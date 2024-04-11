@@ -6,15 +6,16 @@
              x:Class="WordCalc.Presentation.Components.WordComponent"
              x:DataType="viewModel:WordComponentModel">
     <StackLayout>
-        <!-- Your other content here -->
-
-        <!-- Dynamic collection of TileComponent -->
-        <CollectionView ItemsSource="{Binding TileCollection}">
+        <CollectionView ItemsSource="{Binding TileComponentModels}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal"/>
+            </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <components:TileComponent />
+                <DataTemplate x:DataType="viewModel:TileComponentModel">
+                    <components:TileComponent BindingContext="{Binding .}" />
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+        <Label Text="{Binding DisplayScore}" />
     </StackLayout>
 </ContentView>
