@@ -6,11 +6,31 @@
              x:DataType="viewModel:TestViewModel"
              x:Class="WordCalc.Presentation.View.TestPage"
              Title="TestPage">
-    <CollectionView ItemsSource="{Binding WordComponentModelList}">
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="components:WordComponent">
-                <components:WordComponent BindingContext="{Binding .}"/>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <CollectionView ItemsSource="{Binding WordComponentModelList}"
+                        Grid.Row="0"
+                        Grid.ColumnSpan="2">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="components:WordComponent">
+                    <components:WordComponent BindingContext="{Binding .}"/>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Entry Placeholder="Enter a word here..."
+               WidthRequest="500"
+               Text="{Binding WordEntryText}"
+               Grid.Row="1"
+               Grid.Column="0"/>
+        <Button Text="Add" Command="{Binding AddWordCommand}"
+                Grid.Row="1"
+                Grid.Column="1"/>
+    </Grid>
 </ContentPage>

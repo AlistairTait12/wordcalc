@@ -1,41 +1,34 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
+using WordCalc.Logic.ModelBuilder;
 using WordCalc.Logic.Models;
 
 namespace WordCalc.Presentation.ViewModel;
 
 public partial class TestViewModel : ObservableObject
 {
+    private readonly TileListBuilder _tileListBuilder;
+
     [ObservableProperty]
-    List<WordComponentModel> wordComponentModelList;
+    ObservableCollection<WordComponentModel> wordComponentModelList;
+
+    [ObservableProperty]
+    string wordEntryText;
 
     public TestViewModel()
     {
-        var words = new List<Word>
-        {
-            new()
-            {
-                Tiles = new List<Tile>
-                {
-                    new() { Letter = 'A' },
-                    new() { Letter = 'P' },
-                    new() { Letter = 'P' },
-                    new() { Letter = 'L' },
-                    new() { Letter = 'E' }
-                }
-            },
-            new()
-            {
-                Tiles = new List<Tile>
-                {
-                    new() { Letter = 'A' },
-                    new() { Letter = 'P' },
-                    new() { Letter = 'P' },
-                    new() { Letter = 'L' },
-                    new() { Letter = 'E' }
-                }
-            }
-        };
+        _tileListBuilder = new();
+        WordComponentModelList = new();
+    }
 
-        WordComponentModelList = words.Select(word => new WordComponentModel(word)).ToList();
+    [RelayCommand]
+    public void AddWord()
+    {
+        var tiles = _tileListBuilder.Build(WordEntryText.ToUpper());
+        var word = new Word() { Tiles = tiles.ToList()};
+        var wordComponentModel = new WordComponentModel(word);
+        WordComponentModelList.Add(wordComponentModel);
+        WordEntryText = string.Empty;
     }
 }
