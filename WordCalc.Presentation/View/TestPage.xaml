@@ -6,5 +6,11 @@
              x:DataType="viewModel:TestViewModel"
              x:Class="WordCalc.Presentation.View.TestPage"
              Title="TestPage">
-    <components:WordComponent BindingContext="{Binding WordComponentModel}" />
+    <CollectionView ItemsSource="{Binding WordComponentModelList}">
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="components:WordComponent">
+                <components:WordComponent BindingContext="{Binding .}"/>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>

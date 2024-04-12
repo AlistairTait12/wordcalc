@@ -6,16 +6,39 @@
              x:Class="WordCalc.Presentation.Components.WordComponent"
              x:DataType="viewModel:WordComponentModel">
     <StackLayout>
-        <CollectionView ItemsSource="{Binding TileComponentModels}">
-            <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Horizontal"/>
-            </CollectionView.ItemsLayout>
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="viewModel:TileComponentModel">
-                    <components:TileComponent BindingContext="{Binding .}" />
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-        <Label Text="{Binding DisplayScore}" />
+        <Border Margin="0,0,0,10"
+                StrokeThickness="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <CollectionView ItemsSource="{Binding TileComponentModels}"
+                    Grid.Row="0">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="viewModel:TileComponentModel">
+                            <components:TileComponent BindingContext="{Binding .}" />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <Border HeightRequest="28"
+                        WidthRequest="78"
+                        StrokeThickness="3"
+                        Stroke="White"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="Start"
+                        StrokeShape="RoundRectangle 15,15,15,15"
+                        Grid.Row="1"
+                        Margin="0,5,0,0">
+                    <Label Text="{Binding DisplayScore}"
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="CenterAndExpand"
+                           TextColor="White"/>
+                </Border>
+            </Grid>
+        </Border>
     </StackLayout>
 </ContentView>

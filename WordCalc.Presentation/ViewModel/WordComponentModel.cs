@@ -16,18 +16,9 @@ public partial class WordComponentModel : ObservableObject
     [ObservableProperty]
     int displayScore;
 
-    public WordComponentModel()
+    public WordComponentModel(Word word)
     {
-        var tiles = new List<Tile>
-        {
-            new() { Letter = 'A' },
-            new() { Letter = 'P' },
-            new() { Letter = 'P' },
-            new() { Letter = 'L' },
-            new() { Letter = 'E' }
-        };
-
-        Word = new Word { Tiles = tiles };
+        Word = word;
         TileComponentModels = Word.Tiles.Select(tile => new TileComponentModel(tile)).ToList();
         TileComponentModels.ForEach(model => model.ContainingWord = this);
         DisplayScore = Word.GetValue();
