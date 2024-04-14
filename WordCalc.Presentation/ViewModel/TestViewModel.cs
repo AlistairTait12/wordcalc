@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using System.Text.RegularExpressions;
 using WordCalc.Logic.ModelBuilder;
 using WordCalc.Logic.Models;
 
@@ -41,14 +42,8 @@ public partial class TestViewModel : ObservableObject
     [RelayCommand]
     private void UpdateAddWordButtonState()
     {
-        // Get the regular expression pattern from TileListBuilder
-        // @$"^({_validTilePattern})+$"
         string pattern = @"^([A-Za-z]{1}_{0,1}[23\+\*]{0,1})+$";
-
-        // Check if WordEntryText matches the regular expression pattern
-        bool isMatch = System.Text.RegularExpressions.Regex.IsMatch(WordEntryText, pattern);
-
-        // Update the IsAddWordButtonEnabled property based on the match result
+        bool isMatch = Regex.IsMatch(WordEntryText, pattern);
         IsAddWordButtonEnabled = isMatch;
     }
 }
