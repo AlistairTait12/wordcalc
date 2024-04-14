@@ -25,7 +25,7 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
         <Entry Placeholder="Enter a word here..."
-               WidthRequest="500"
+               WidthRequest="200"
                Text="{Binding WordEntryText}"
                Grid.Row="1"
                Grid.Column="0"/>

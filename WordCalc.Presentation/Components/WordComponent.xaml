@@ -13,8 +13,12 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
                 <CollectionView ItemsSource="{Binding TileComponentModels}"
-                    Grid.Row="0">
+                    Grid.Row="0" Grid.ColumnSpan="2">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Horizontal"/>
                     </CollectionView.ItemsLayout>
@@ -32,11 +36,32 @@
                         HorizontalOptions="Start"
                         StrokeShape="RoundRectangle 15,15,15,15"
                         Grid.Row="1"
+                        Grid.Column="0"
                         Margin="0,5,0,0">
                     <Label Text="{Binding DisplayScore}"
                            VerticalOptions="CenterAndExpand"
                            HorizontalOptions="CenterAndExpand"
                            TextColor="White"/>
+                </Border>
+                <!--TODO: How to make button smaller?-->
+                <!--TODO: Make this type of element reusable-->
+                <Border HeightRequest="28"
+                        WidthRequest="78"
+                        StrokeThickness="3"
+                        Stroke="Red"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="Start"
+                        StrokeShape="RoundRectangle 15,15,15,15"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="0,5,0,0">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RemoveWordCommand}"/>
+                    </Border.GestureRecognizers>
+                    <Label Text="Remove"
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="CenterAndExpand"
+                           TextColor="Red"/>
                 </Border>
             </Grid>
         </Border>

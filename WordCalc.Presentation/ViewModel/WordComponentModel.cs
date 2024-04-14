@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using WordCalc.Logic.Models;
 using WordCalc.Presentation.Components;
 
@@ -16,6 +17,8 @@ public partial class WordComponentModel : ObservableObject
     [ObservableProperty]
     int displayScore;
 
+    public TestViewModel ContainingTurn { get; internal set; }
+
     public WordComponentModel(Word word)
     {
         Word = word;
@@ -24,8 +27,8 @@ public partial class WordComponentModel : ObservableObject
         DisplayScore = Word.GetValue();
     }
 
-    internal void UpdateScore()
-    {
-        DisplayScore = Word.GetValue();
-    }
+    [RelayCommand]
+    public void RemoveWord() => ContainingTurn.WordComponentModelList.Remove(this);
+
+    internal void UpdateScore() => DisplayScore = Word.GetValue();
 }

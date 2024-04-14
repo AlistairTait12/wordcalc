@@ -34,6 +34,7 @@ public partial class TestViewModel : ObservableObject
         var word = new Word() { Tiles = tiles.ToList()};
         var wordComponentModel = new WordComponentModel(word);
         WordComponentModelList.Add(wordComponentModel);
+        WordComponentModelList.Last().ContainingTurn = this;
         WordEntryText = string.Empty;
     }
 
