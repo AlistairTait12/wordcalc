@@ -30,6 +30,7 @@
                Grid.Row="1"
                Grid.Column="0"/>
         <Button Text="Add" Command="{Binding AddWordCommand}"
+                IsEnabled="{Binding IsAddWordButtonEnabled}"
                 Grid.Row="1"
                 Grid.Column="1"/>
     </Grid>

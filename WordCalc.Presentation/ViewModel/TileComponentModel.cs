@@ -18,6 +18,9 @@ public partial class TileComponentModel : ObservableObject
     [ObservableProperty]
     Tile tile;
 
+    [ObservableProperty]
+    TextDecorations tileDecoration;
+
     public WordComponentModel ContainingWord { get; internal set; }
 
     public TileComponentModel(Tile tile)
@@ -25,6 +28,7 @@ public partial class TileComponentModel : ObservableObject
         Tile = tile;
         TileValue = Tile.GetValue();
         TileBackground = GetTileBackground();
+        TileDecoration = GetTileDecoration();
     }
 
     [RelayCommand]
@@ -35,6 +39,8 @@ public partial class TileComponentModel : ObservableObject
         UpdateTileValue();
         ContainingWord.UpdateScore();
     }
+
+    // TODO: Toggling the blankness of the tile
 
     private void SetPremium() => Tile.TilePremium = Tile.TilePremium switch
     {
@@ -55,6 +61,10 @@ public partial class TileComponentModel : ObservableObject
         TilePremium.TripleWord => "Red",
         _ => "LightGrey"
     };
+
+    private TextDecorations GetTileDecoration() => Tile.IsBlank
+        ? TextDecorations.Underline
+        : TextDecorations.None;
 
     private void UpdateTileBackground() => TileBackground = GetTileBackground();
 
