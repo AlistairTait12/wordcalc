@@ -20,8 +20,17 @@
                 <CollectionView ItemsSource="{Binding TileComponentModels}"
                     Grid.Row="0" Grid.ColumnSpan="2">
                     <CollectionView.ItemsLayout>
-                        <GridItemsLayout Orientation="Vertical"
-                                         Span="7"/>
+                        <OnPlatform x:TypeArguments="ItemsLayout">
+                            <On Platform="Android">
+                                <GridItemsLayout Orientation="Vertical" Span="7" />
+                            </On>
+                            <On Platform="iOS">
+                                <LinearItemsLayout Orientation="Vertical" ItemSpacing="7" />
+                            </On>
+                            <On Platform="UWP">
+                                <LinearItemsLayout Orientation="Horizontal" />
+                            </On>
+                        </OnPlatform>
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="viewModel:TileComponentModel">
@@ -32,7 +41,7 @@
                 <Border HeightRequest="28"
                         WidthRequest="78"
                         StrokeThickness="3"
-                        Stroke="White"
+                        Stroke="Blue"
                         BackgroundColor="Transparent"
                         HorizontalOptions="Start"
                         StrokeShape="RoundRectangle 15,15,15,15"
@@ -42,7 +51,7 @@
                     <Label Text="{Binding DisplayScore}"
                            VerticalOptions="CenterAndExpand"
                            HorizontalOptions="CenterAndExpand"
-                           TextColor="White"/>
+                           TextColor="Blue"/>
                 </Border>
                 <!--TODO: How to make button smaller?-->
                 <!--TODO: Make this type of element reusable-->

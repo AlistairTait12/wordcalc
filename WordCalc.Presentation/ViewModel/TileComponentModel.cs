@@ -10,16 +10,16 @@ namespace WordCalc.Presentation.ViewModel;
 public partial class TileComponentModel : ObservableObject
 {
     [ObservableProperty]
-    string tileBackground;
+    Color tileBackground;
 
     [ObservableProperty]
     int tileValue;
 
     [ObservableProperty]
-    Tile tile;
+    TextDecorations tileDecoration;
 
     [ObservableProperty]
-    TextDecorations tileDecoration;
+    Tile tile;
 
     public WordComponentModel ContainingWord { get; internal set; }
 
@@ -35,8 +35,8 @@ public partial class TileComponentModel : ObservableObject
     public void ToggleTilePremium()
     {
         SetPremium();
-        UpdateTileBackground();
         UpdateTileValue();
+        UpdateTileBackground();
         ContainingWord.UpdateScore();
     }
 
@@ -52,14 +52,14 @@ public partial class TileComponentModel : ObservableObject
         _ => TilePremium.None
     };
 
-    private string GetTileBackground() => Tile.TilePremium switch
+    private Color GetTileBackground() => Tile.TilePremium switch
     {
-        TilePremium.None => "LightGrey",
-        TilePremium.DoubleLetter => "LightBlue",
-        TilePremium.TripleLetter => "Blue",
-        TilePremium.DoubleWord => "Yellow",
-        TilePremium.TripleWord => "Red",
-        _ => "LightGrey"
+        TilePremium.None => Colors.BlanchedAlmond,
+        TilePremium.DoubleLetter => Colors.LightBlue,
+        TilePremium.TripleLetter => Colors.Blue,
+        TilePremium.DoubleWord => Colors.Orange,
+        TilePremium.TripleWord => Colors.Red,
+        _ => Colors.BlanchedAlmond
     };
 
     private TextDecorations GetTileDecoration() => Tile.IsBlank

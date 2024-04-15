@@ -20,24 +20,22 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Label
-                Text="{Binding Tile.Letter}"
-                TextColor="Black"
-                FontSize="36"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                Grid.RowSpan="2"
-                Grid.ColumnSpan="2"
-                TextDecorations="{Binding TileDecoration}"/>
+            <Label Text="{Binding Tile.Letter}"
+                   TextColor="Black"
+                   FontSize="36"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Grid.RowSpan="2"
+                   Grid.ColumnSpan="2"
+                   TextDecorations="{Binding TileDecoration}"/>
 
-            <Label
-                Text="{Binding TileValue}"
-                TextColor="Black"
-                FontSize="16"
-                HorizontalOptions="End"
-                VerticalOptions="End"
-                Grid.Row="1"
-                Grid.Column="1"/>
+            <Label Text="{Binding TileValue}"
+                   TextColor="Black"
+                   FontSize="16"
+                   HorizontalOptions="End"
+                   VerticalOptions="End"
+                   Grid.Row="1"
+                   Grid.Column="1"/>
         </Grid>
     </Border>
 </ContentView>
