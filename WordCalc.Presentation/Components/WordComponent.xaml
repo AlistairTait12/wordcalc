@@ -20,7 +20,8 @@
                 <CollectionView ItemsSource="{Binding TileComponentModels}"
                     Grid.Row="0" Grid.ColumnSpan="2">
                     <CollectionView.ItemsLayout>
-                        <LinearItemsLayout Orientation="Horizontal"/>
+                        <GridItemsLayout Orientation="Vertical"
+                                         Span="7"/>
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="viewModel:TileComponentModel">

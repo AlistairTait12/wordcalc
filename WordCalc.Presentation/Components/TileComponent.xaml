@@ -5,8 +5,8 @@
              xmlns:viewModel="clr-namespace:WordCalc.Presentation.ViewModel"
              x:DataType="viewModel:TileComponentModel">
     <Border Stroke="Black"
-            HeightRequest="60"
-            WidthRequest="60">
+            HeightRequest="54"
+            WidthRequest="54">
         <Border.GestureRecognizers>
             <TapGestureRecognizer Command="{Binding ToggleTilePremiumCommand}" />
         </Border.GestureRecognizers>
