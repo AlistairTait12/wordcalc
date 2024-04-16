@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using WordCalc.Logic.Models;
-using WordCalc.Presentation.Components;
 
 namespace WordCalc.Presentation.ViewModel;
 
@@ -28,7 +27,16 @@ public partial class WordComponentModel : ObservableObject
     }
 
     [RelayCommand]
-    public void RemoveWord() => ContainingTurn.WordComponentModelList.Remove(this);
+    public void RemoveWord()
+    {
+        ContainingTurn.Turn.Words.Remove(Word);
+        ContainingTurn.WordComponentModelList.Remove(this);
+        ContainingTurn.UpdateTurnDisplayScore();
+    }
 
-    internal void UpdateScore() => DisplayScore = Word.GetValue();
+    internal void UpdateScore()
+    {
+        DisplayScore = Word.GetValue();
+        ContainingTurn.UpdateTurnDisplayScore();
+    }
 }

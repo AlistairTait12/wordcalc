@@ -12,6 +12,7 @@ public partial class TestViewModel : ObservableObject
     private readonly TileListBuilder _tileListBuilder;
 
     [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(UpdateTurnDisplayScoreCommand))]
     ObservableCollection<WordComponentModel> wordComponentModelList;
 
     [ObservableProperty]
@@ -20,6 +21,12 @@ public partial class TestViewModel : ObservableObject
 
     [ObservableProperty]
     bool isAddWordButtonEnabled = false;
+
+    [ObservableProperty]
+    int turnDisplayScore;
+
+    [ObservableProperty]
+    Turn turn = new();
 
     public TestViewModel()
     {
@@ -32,10 +39,12 @@ public partial class TestViewModel : ObservableObject
     {
         var tiles = _tileListBuilder.Build(WordEntryText.ToUpper());
         var word = new Word() { Tiles = tiles.ToList()};
+        Turn.Words.Add(word);
         var wordComponentModel = new WordComponentModel(word);
         WordComponentModelList.Add(wordComponentModel);
         WordComponentModelList.Last().ContainingTurn = this;
         WordEntryText = string.Empty;
+        UpdateTurnDisplayScore();
     }
 
     partial void OnWordEntryTextChanged(string value) => UpdateAddWordButtonState();
@@ -47,4 +56,11 @@ public partial class TestViewModel : ObservableObject
         bool isMatch = Regex.IsMatch(WordEntryText, pattern);
         IsAddWordButtonEnabled = isMatch;
     }
+
+    // TODO: this needs to be called whenever a word is
+    // - added
+    // - removed
+    // - tiles are changed
+    [RelayCommand]
+    public void UpdateTurnDisplayScore() => TurnDisplayScore = Turn.GetValue();
 }
