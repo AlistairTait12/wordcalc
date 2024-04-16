@@ -16,7 +16,7 @@ public partial class WordComponentModel : ObservableObject
     [ObservableProperty]
     int displayScore;
 
-    public TestViewModel ContainingTurn { get; internal set; }
+    public TurnViewModel ContainingTurn { get; internal set; }
 
     public WordComponentModel(Word word)
     {

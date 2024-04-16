@@ -7,7 +7,7 @@ using WordCalc.Logic.Models;
 
 namespace WordCalc.Presentation.ViewModel;
 
-public partial class TestViewModel : ObservableObject
+public partial class TurnViewModel : ObservableObject
 {
     private readonly TileListBuilder _tileListBuilder;
 
@@ -28,7 +28,7 @@ public partial class TestViewModel : ObservableObject
     [ObservableProperty]
     Turn turn = new();
 
-    public TestViewModel()
+    public TurnViewModel()
     {
         _tileListBuilder = new();
         WordComponentModelList = new();
@@ -57,10 +57,8 @@ public partial class TestViewModel : ObservableObject
         IsAddWordButtonEnabled = isMatch;
     }
 
-    // TODO: this needs to be called whenever a word is
-    // - added
-    // - removed
-    // - tiles are changed
+    // TODO: This needs to be called whenever a word is added or removed or when a tile is toggled.
+    // TODO: Surely there has to be a better way than explicitly calling it every time
     [RelayCommand]
     public void UpdateTurnDisplayScore() => TurnDisplayScore = Turn.GetValue();
 }

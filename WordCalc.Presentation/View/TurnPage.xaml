@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:components="clr-namespace:WordCalc.Presentation.Components"
              xmlns:viewModel="clr-namespace:WordCalc.Presentation.ViewModel"
-             x:DataType="viewModel:TestViewModel"
-             x:Class="WordCalc.Presentation.View.TestPage"
-             Title="TestPage">
+             x:DataType="viewModel:TurnViewModel"
+             x:Class="WordCalc.Presentation.View.TurnPage"
+             Title="Add Turn">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
