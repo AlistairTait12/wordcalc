@@ -2,7 +2,7 @@
 
 public class Turn
 {
-    public IEnumerable<Word> Words { get; set; }
+    public List<Word> Words { get; set; } = new();
 
     public bool HasBonus { get; set; } = false;
 

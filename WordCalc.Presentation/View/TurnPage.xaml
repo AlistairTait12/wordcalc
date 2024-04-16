@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:WordCalc.Presentation.Components"
+             xmlns:viewModel="clr-namespace:WordCalc.Presentation.ViewModel"
+             x:DataType="viewModel:TurnViewModel"
+             x:Class="WordCalc.Presentation.View.TurnPage"
+             Title="Add Turn">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <CollectionView ItemsSource="{Binding WordComponentModelList}"
+                        Grid.Row="0"
+                        Grid.ColumnSpan="2">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="components:WordComponent">
+                    <components:WordComponent BindingContext="{Binding .}"/>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Line Stroke="Black"
+              StrokeThickness="1"
+              X2="350"
+              Grid.Row="1"
+              Grid.ColumnSpan="2"
+              HorizontalOptions="Start"/>
+        <Label Text="Total"
+               FontSize="Medium"
+               Grid.Row="1"
+               Grid.Column="0"
+               VerticalOptions="CenterAndExpand"/>
+        <Border HeightRequest="40"
+                WidthRequest="100"
+                StrokeThickness="3"
+                BackgroundColor="Black"
+                Stroke="Black"
+                HorizontalOptions="Start"
+                StrokeShape="RoundRectangle 25,25,25,25"
+                Grid.Row="1"
+                Grid.Column="2"
+                Margin="0,5,0,0">
+            <Label Text="{Binding TurnDisplayScore}"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand"
+                   TextColor="White"
+                   FontAttributes="Bold"
+                   FontSize="Medium"/>
+        </Border>
+        <Entry Placeholder="Enter a word here..."
+               WidthRequest="200"
+               Text="{Binding WordEntryText}"
+               Grid.Row="2"
+               Grid.Column="0"
+               HorizontalOptions="Start"/>
+        <Button Text="Add" Command="{Binding AddWordCommand}"
+                IsEnabled="{Binding IsAddWordButtonEnabled}"
+                Grid.Row="2"
+                Grid.Column="1"
+                HorizontalOptions="Start"
+                WidthRequest="100"/>
+    </Grid>
+</ContentPage>

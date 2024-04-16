@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:WordCalc.Presentation.ViewModel"
+             xmlns:components="clr-namespace:WordCalc.Presentation.Components"
+             x:Class="WordCalc.Presentation.Components.WordComponent"
+             x:DataType="viewModel:WordComponentModel">
+    <StackLayout>
+        <Border Margin="0,0,0,10"
+                StrokeThickness="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <CollectionView ItemsSource="{Binding TileComponentModels}"
+                    Grid.Row="0" Grid.ColumnSpan="2">
+                    <CollectionView.ItemsLayout>
+                        <OnPlatform x:TypeArguments="ItemsLayout">
+                            <On Platform="Android">
+                                <GridItemsLayout Orientation="Vertical" Span="7" />
+                            </On>
+                            <On Platform="iOS">
+                                <LinearItemsLayout Orientation="Vertical" ItemSpacing="7" />
+                            </On>
+                            <On Platform="UWP">
+                                <LinearItemsLayout Orientation="Horizontal" />
+                            </On>
+                        </OnPlatform>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="viewModel:TileComponentModel">
+                            <components:TileComponent BindingContext="{Binding .}" />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <Border HeightRequest="28"
+                        WidthRequest="78"
+                        StrokeThickness="3"
+                        Stroke="Blue"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="Start"
+                        StrokeShape="RoundRectangle 15,15,15,15"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="0,5,0,0">
+                    <Label Text="{Binding DisplayScore}"
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="CenterAndExpand"
+                           TextColor="Blue"/>
+                </Border>
+                <!--TODO: How to make button smaller?-->
+                <!--TODO: Make this type of element reusable-->
+                <Border HeightRequest="28"
+                        WidthRequest="78"
+                        StrokeThickness="3"
+                        Stroke="Red"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="Start"
+                        StrokeShape="RoundRectangle 15,15,15,15"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="0,5,0,0">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RemoveWordCommand}"/>
+                    </Border.GestureRecognizers>
+                    <Label Text="Remove"
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="CenterAndExpand"
+                           TextColor="Red"/>
+                </Border>
+            </Grid>
+        </Border>
+    </StackLayout>
+</ContentView>
