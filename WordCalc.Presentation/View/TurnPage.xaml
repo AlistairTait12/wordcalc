@@ -11,6 +11,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="220"/>
@@ -65,5 +66,9 @@
                 Grid.Column="1"
                 HorizontalOptions="Start"
                 WidthRequest="100"/>
+        <Button Text="Done"
+                Command="{Binding AddTurnToGameCommand}"
+                Grid.Row="3"
+                Grid.Column="0"/>
     </Grid>
 </ContentPage>

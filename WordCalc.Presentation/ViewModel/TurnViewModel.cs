@@ -2,14 +2,17 @@
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
+using WordCalc.Logic;
 using WordCalc.Logic.ModelBuilder;
 using WordCalc.Logic.Models;
+using WordCalc.Presentation.View;
 
 namespace WordCalc.Presentation.ViewModel;
 
 public partial class TurnViewModel : ObservableObject, IQueryAttributable
 {
     private readonly TileListBuilder _tileListBuilder;
+    private readonly GameHandler _gameHandler;
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(UpdateTurnDisplayScoreCommand))]
@@ -28,8 +31,9 @@ public partial class TurnViewModel : ObservableObject, IQueryAttributable
     [ObservableProperty]
     Turn turn;
 
-    public TurnViewModel()
+    public TurnViewModel(GameHandler gameHandler)
     {
+        _gameHandler = gameHandler;
         _tileListBuilder = new();
         WordComponentModelList = new();
     }
@@ -66,4 +70,11 @@ public partial class TurnViewModel : ObservableObject, IQueryAttributable
     // TODO: Surely there has to be a better way than explicitly calling it every time
     [RelayCommand]
     public void UpdateTurnDisplayScore() => TurnDisplayScore = Turn.GetValue();
+
+    [RelayCommand]
+    public void AddTurnToGame()
+    {
+        _gameHandler.AddTurn(0, Turn);
+        Shell.Current.GoToAsync(nameof(CurrentGamePage), true);
+    }
 }
