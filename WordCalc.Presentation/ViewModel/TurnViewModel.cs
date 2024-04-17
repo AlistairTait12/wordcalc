@@ -7,7 +7,7 @@ using WordCalc.Logic.Models;
 
 namespace WordCalc.Presentation.ViewModel;
 
-public partial class TurnViewModel : ObservableObject
+public partial class TurnViewModel : ObservableObject, IQueryAttributable
 {
     private readonly TileListBuilder _tileListBuilder;
 
@@ -26,12 +26,17 @@ public partial class TurnViewModel : ObservableObject
     int turnDisplayScore;
 
     [ObservableProperty]
-    Turn turn = new();
+    Turn turn;
 
     public TurnViewModel()
     {
         _tileListBuilder = new();
         WordComponentModelList = new();
+    }
+
+    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    {
+        Turn = query["Turn"] as Turn;
     }
 
     [RelayCommand]

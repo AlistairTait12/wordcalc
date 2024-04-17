@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WordCalc.Presentation.View.CurrentGamePage"
+             xmlns:viewModel="clr-namespace:WordCalc.Presentation.ViewModel"
+             x:DataType="viewModel:CurrentGameViewModel"
+             Title="CurrentGamePage">
+    <VerticalStackLayout>
+        <Label 
+            Text="TODO: Add the things to make the game info appear here!"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Button Text="New Turn"
+                Command="{Binding AddTurnCommand}"/>
+    </VerticalStackLayout>
+</ContentPage>
