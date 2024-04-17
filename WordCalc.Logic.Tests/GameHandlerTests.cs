@@ -85,4 +85,62 @@ public class GameHandlerTests
         // Assert
         _gameHandler.CurrentGame.Should().BeNull();
     }
+
+    [Test]
+    public void GetNextPlayerIndex_WithCurrentGame_GetsIndexForPlayerWhoNeedsNextTurn()
+    {
+        // Arrange
+        var game = new Game
+        {
+            Players = new List<Player>
+            {
+                new()
+                {
+                    Name = "Alvin",
+                    PlayerOrder = 0,
+                    Turns =
+                    [
+                        new Turn(),
+                        new Turn()
+                    ]
+                },
+                new()
+                {
+                    Name = "Jeremy",
+                    PlayerOrder = 1,
+                    Turns =
+                    [
+                        new Turn(),
+                        new Turn()
+                    ]
+                },
+                new()
+                {
+                    Name = "Derek",
+                    PlayerOrder = 2,
+                    Turns =
+                    [
+                        new Turn()
+                    ]
+                },
+                new()
+                {
+                    Name = "Victor",
+                    PlayerOrder = 3,
+                    Turns =
+                    [
+                        new Turn()
+                    ]
+                }
+            }
+        };
+
+        _gameHandler.CurrentGame = game;
+
+        // Act
+        var actual = _gameHandler.GetNextPlayerIndex();
+
+        // Assert
+        actual.Should().Be(2);
+    }
 }

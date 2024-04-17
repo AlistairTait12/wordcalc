@@ -15,7 +15,10 @@ public partial class CurrentGameViewModel : ObservableObject
     [RelayCommand]
     public async Task AddTurn()
     {
-        var turn = new Turn();
+        // TODO: Maybe the player index should be moved to the TurnPage
+        var playerIndex = _gameHandler.GetNextPlayerIndex();
+        _gameHandler.AddTurn(playerIndex, new Turn());
+        var turn = _gameHandler.CurrentGame.Players.ElementAt(playerIndex).Turns.Last();
         await Shell.Current.GoToAsync(nameof(TurnPage), true,
             new Dictionary<string, object>
             {

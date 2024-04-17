@@ -67,7 +67,7 @@
                 HorizontalOptions="Start"
                 WidthRequest="100"/>
         <Button Text="Done"
-                Command="{Binding AddTurnToGameCommand}"
+                Command="{Binding CompleteTurnCommand}"
                 Grid.Row="3"
                 Grid.Column="0"/>
     </Grid>

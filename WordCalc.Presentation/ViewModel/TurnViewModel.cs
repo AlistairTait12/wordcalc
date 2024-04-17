@@ -72,9 +72,8 @@ public partial class TurnViewModel : ObservableObject, IQueryAttributable
     public void UpdateTurnDisplayScore() => TurnDisplayScore = Turn.GetValue();
 
     [RelayCommand]
-    public void AddTurnToGame()
+    public void CompleteTurn()
     {
-        _gameHandler.AddTurn(0, Turn);
         Shell.Current.GoToAsync(nameof(CurrentGamePage), true);
     }
 }

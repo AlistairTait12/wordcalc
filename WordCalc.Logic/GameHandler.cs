@@ -4,7 +4,7 @@ namespace WordCalc.Logic;
 
 public class GameHandler
 {
-    public Game? CurrentGame { get; private set; }
+    public Game? CurrentGame { get; set; }
 
     public void CreateGame(IEnumerable<string> players)
     {
@@ -21,6 +21,13 @@ public class GameHandler
         {
             player.Turns = [];
         }
+    }
+
+    public int GetNextPlayerIndex()
+    {
+        // Who is the next player with the least turns?
+        var playerWithLeastTurns = CurrentGame.Players.OrderBy(p => p.Turns.Count).First();
+        return playerWithLeastTurns.PlayerOrder;
     }
 
     public void AddTurn(int playerOrder, Turn turnToAdd) =>
