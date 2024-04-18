@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:WordCalc.Presentation.ViewModel"
+             xmlns:local="clr-namespace:WordCalc.Presentation.Components"
+             x:DataType="viewModel:RoundComponentModel"
+             x:Class="WordCalc.Presentation.Components.RoundComponent">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0">
+            <Label Text="{Binding RoundNumber}"/>
+        </Border>
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding PlayerTurns}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="viewModel:PlayerTurnComponentModel">
+                    <local:PlayerTurnComponent BindingContext="{Binding .}"/>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentView>

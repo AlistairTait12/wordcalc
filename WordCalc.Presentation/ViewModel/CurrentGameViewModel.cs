@@ -1,7 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
 using WordCalc.Logic;
 using WordCalc.Logic.Models;
+using WordCalc.Presentation.ModelBuilders;
 using WordCalc.Presentation.View;
 
 namespace WordCalc.Presentation.ViewModel;
@@ -9,8 +11,18 @@ namespace WordCalc.Presentation.ViewModel;
 public partial class CurrentGameViewModel : ObservableObject
 {
     private readonly GameHandler _gameHandler;
+    private readonly RoundComponentModelListBuilder _roundComponentModelListBuilder;
 
-    public CurrentGameViewModel(GameHandler gameHandler) => _gameHandler = gameHandler;
+    public CurrentGameViewModel(GameHandler gameHandler,
+        RoundComponentModelListBuilder roundComponentModelListBuilder)
+    {
+        _gameHandler = gameHandler;
+        _roundComponentModelListBuilder = roundComponentModelListBuilder;
+        rounds = _roundComponentModelListBuilder.BuildRoundComponents(_gameHandler.CurrentGame);
+    }
+
+    [ObservableProperty]
+    ObservableCollection<RoundComponentModel> rounds;
 
     [RelayCommand]
     public async Task AddTurn()

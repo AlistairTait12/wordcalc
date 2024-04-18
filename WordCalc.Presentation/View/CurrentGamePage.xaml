@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WordCalc.Presentation.View.CurrentGamePage"
+             xmlns:components="clr-namespace:WordCalc.Presentation.Components"
              xmlns:viewModel="clr-namespace:WordCalc.Presentation.ViewModel"
              x:DataType="viewModel:CurrentGameViewModel"
              Title="CurrentGamePage">
@@ -12,5 +13,12 @@
             HorizontalOptions="Center" />
         <Button Text="New Turn"
                 Command="{Binding AddTurnCommand}"/>
+        <CollectionView ItemsSource="{Binding Rounds}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="viewModel:RoundComponentModel">
+                    <components:RoundComponent BindingContext="{Binding .}" />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </VerticalStackLayout>
 </ContentPage>
