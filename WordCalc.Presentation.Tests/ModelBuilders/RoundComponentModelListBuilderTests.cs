@@ -21,6 +21,7 @@ public class RoundComponentModelListBuilderTests
                 new ()
                 {
                     Name = "Dave",
+                    PlayerOrder = 1,
                     Turns =
                     [
                         new () { Words = [CreateWord("apple") ] },
@@ -30,6 +31,7 @@ public class RoundComponentModelListBuilderTests
                 new ()
                 {
                     Name = "Kim",
+                    PlayerOrder = 2,
                     Turns =
                     [
                         new () { Words = [CreateWord("banana") ] },
