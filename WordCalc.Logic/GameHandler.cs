@@ -23,12 +23,8 @@ public class GameHandler
         }
     }
 
-    public int GetNextPlayerIndex()
-    {
-        // Who is the next player with the least turns?
-        var playerWithLeastTurns = CurrentGame.Players.OrderBy(p => p.Turns.Count).First();
-        return playerWithLeastTurns.PlayerOrder;
-    }
+    public int GetNextPlayerIndex() =>
+        CurrentGame.Players.OrderBy(p => p.Turns.Count).First().PlayerOrder;
 
     public void AddTurn(int playerOrder, Turn turnToAdd) =>
         CurrentGame.Players.ElementAt(playerOrder).Turns.Add(turnToAdd);

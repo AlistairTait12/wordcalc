@@ -8,5 +8,5 @@ public class Player
 
     public List<Turn> Turns { get; set; }
 
-    public int GetScore() => Turns.Sum(t => t.GetValue());
+    public int GetScore() => Turns.Sum(turn => turn.GetValue());
 }
